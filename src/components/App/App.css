@@ -22,3 +22,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+* {
+  list-style-type: none;
+}
+
+.poster {
+  display: inline;
+  padding-bottom:0
+}
+
+.posterDescription {
+  display: inline-block;
+  vertical-align: top;
+  height:200px;
+  padding-left:2%;
+  width:60%;
+}
