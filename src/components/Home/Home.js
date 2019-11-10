@@ -20,11 +20,11 @@ class Home extends Component {
                 <div >
                     {this.props.movies.map((movie, i) =>
                         <div className="cardArea">
-                            <h1>{movie.title}</h1>
+                            <h1 >{movie.title}</h1>
                             <img className="poster" alt="" onClick={() => this.routeToDetails(movie)} src={movie.poster} />
                             <span className="posterDescription">
                                 <div className="descriptionDiv">
-                                    <h3>Description: </h3>
+                                    <h3>Description </h3>
                                     {movie.description}
                                 </div>
                             </span>
