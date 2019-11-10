@@ -12,14 +12,20 @@ class EditDetails extends Component {
         this.props.dispatch({ type: "EDIT_MOVIE_DETAILS", payload:{property:property,value:event.target.value} });
     }
 
+    routeToDetails = () => {
+        this.props.history.push(`/details/${this.props.match.params.id}`)
+    }
+
 
     saveEdits = () => {
+        this.props.dispatch({type:"SET_MOVIE_DETAIL_EDITS",payload:this.props.movieDetails})
         this.props.history.push(`/details/${this.props.match.params.id}`)
     }
 
     render() {
         return (
-            <>
+            <>  
+                <button onClick={this.routeToDetails} >Cancel</button>
                 <button onClick={this.saveEdits}>Save</button>
                 <br />
                 Title:<input name="title" onChange={(event) => this.handleChangeFor('title',event)} value={this.props.movieDetails.title} /> <br/>
