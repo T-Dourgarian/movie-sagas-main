@@ -42,10 +42,12 @@ const movies = (state = [], action) => {
     }
 }
 
-const movieDetails = (state = [], action) => {
+const movieDetails = (state = {}, action) => {
     switch (action.type) {
         case 'SET_MOVIE_DETAILS':
             return action.payload;
+        case 'EDIT_MOVIE_DETAILS':
+            return {...state,[action.payload.property]:action.payload.value}
         default:
             return state;
     }
