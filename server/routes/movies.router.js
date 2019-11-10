@@ -5,7 +5,7 @@ const router = express.Router();
 
 // return all movies
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM movies`
+    const queryText = `SELECT * FROM movies ORDER BY movies.id ASC`
 
     pool.query(queryText)
         .then(result => {

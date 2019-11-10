@@ -17,18 +17,19 @@ class Home extends Component {
     render() {
         return (
             <>
-                <ul>
+                <div >
                     {this.props.movies.map((movie, i) =>
-                        <li key={i} >
+                        <div className="cardArea">
                             <h1>{movie.title}</h1>
                             <img className="poster" alt="" onClick={() => this.routeToDetails(movie)} src={movie.poster} />
                             <span className="posterDescription">
-                                <h3>Description: </h3>
-                                {movie.description}
+                                <div className="descriptionDiv">
+                                    <h3>Description: </h3>
+                                    {movie.description}
+                                </div>
                             </span>
-                        </li>)}
-                </ul>
-                <pre>{JSON.stringify(this.props.movies, null, 2)}</pre>
+                        </div>)}
+                </div>
             </>
         );
     }
