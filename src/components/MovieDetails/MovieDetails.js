@@ -27,7 +27,7 @@ class MovieDetails extends Component {
                 </header>
                 <div className="cardArea">
                     <h1 className="h1DetailsTitle">{this.props.movieDetails.title}</h1>
-                    <h2 className="genresLabel">Genre: </h2>
+                    <h2 className="genresLabel">Genre(s) </h2>
                     <ul className="genresUl">
                         {this.props.movieDetails.genre_array && this.props.movieDetails.genre_array.map((genre, i) => <li key={i} >{genre}</li>)}
                     </ul>

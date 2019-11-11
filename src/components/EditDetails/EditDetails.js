@@ -48,7 +48,7 @@ class EditDetails extends Component {
                     <span className="posterDescription">
                         <div >
                             <h3>Description </h3>
-                            <textarea className="descriptionEditInput" value={this.props.movieDetails.description}></textarea>
+                            <textarea className="descriptionEditInput" onChange={(event) => this.handleChangeFor('description', event)} value={this.props.movieDetails.description} value={this.props.movieDetails.description}></textarea>
                         </div>
                     </span>
                 </div>
