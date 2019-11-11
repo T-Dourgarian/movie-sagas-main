@@ -16,7 +16,28 @@ CREATE TABLE "genres" (
 -- You will need to create the junction table that stores the relationships between "movies" and "genres"
 -- This table will need to be populated with some data as well (INSERTS)
 -- Recall that this Junction Table will just be a table of ids!
+CREATE TABLE "movies_genres" (
+  "id" SERIAL PRIMARY KEY,
+  "movie_id" integer REFERENCES movies,
+  "genre_id" integer REFERENCES genres
+);
 
+-- not necessarily accurate data but still data
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('1','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('2','2');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('2','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('4','3');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('5','5');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('3','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('6','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('7','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('8','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('9','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('10','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('11','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('12','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('13','1');
+INSERT INTO movies_genres (movie_id,genre_id) VALUES ('14','1');
 
 
 --------[ DATA! ]---------

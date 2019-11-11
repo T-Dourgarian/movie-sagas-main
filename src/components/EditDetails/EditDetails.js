@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 
 class EditDetails extends Component {
 
-    componentDidMount = () => {
+    componentDidMount = () => { // get movie details on load
         this.props.dispatch({ type: "GET_MOVIE_DETAILS", payload: this.props.match.params.id });
     }
 
-    handleChangeFor = (property, event) => {
+    handleChangeFor = (property, event) => { // directly edit redux state object instead of local state
         this.props.dispatch({ type: "EDIT_MOVIE_DETAILS", payload: { property: property, value: event.target.value } });
     }
 
-    routeToDetails = () => {
+    routeToDetails = () => { // route back to details page
         this.props.history.push(`/details/${this.props.match.params.id}`)
     }
 
 
-    saveEdits = () => {
+    saveEdits = () => { // route back to details page after setting the new data 
         this.props.dispatch({ type: "SET_MOVIE_DETAIL_EDITS", payload: this.props.movieDetails })
         this.props.history.push(`/details/${this.props.match.params.id}`)
     }
@@ -30,27 +30,34 @@ class EditDetails extends Component {
                     <button onClick={this.routeToDetails} className="editDetailsBtn cancelBtn"><i class="fas fa-ban"></i> Cancel</button>
                     <button onClick={this.saveEdits} className="editDetailsBtn saveBtn"><i class="far fa-save"></i> Save</button>
                 </header>
-                {/* <div className="formDiv">
-                    <form onSubmit={this.saveEdits}>
-                        <h3>Title: </h3><input className="titleInput" onChange={(event) => this.handleChangeFor('title', event)} value={this.props.movieDetails.title} /> <br />
-                        <h3>Description: </h3> <textarea className="descriptionInput" className="desciptionInput" onChange={(event) => this.handleChangeFor('description', event)} value={this.props.movieDetails.description} />
-                    </form>
-                </div> */}
 
                 <div className="cardArea">
-                    <input className="inputNewTitle" onChange={(event) => this.handleChangeFor('title', event)} value={this.props.movieDetails.title}></input>
-                    <h2 className="genresLabel">Genre: </h2>
-                    <ul className="genresUl">
-                        {this.props.movieDetails.genre_array && this.props.movieDetails.genre_array.map((genre, i) => <li key={i} >{genre}</li>)}
-                    </ul>
-                    <br/>
-                    <img src={this.props.movieDetails.poster} />
-                    <span className="posterDescription">
-                        <div >
-                            <h3>Description </h3>
-                            <textarea className="descriptionEditInput" onChange={(event) => this.handleChangeFor('description', event)} value={this.props.movieDetails.description} value={this.props.movieDetails.description}></textarea>
-                        </div>
-                    </span>
+                    <form onSubmit={this.saveEdits}>
+                        {/* set value of input as a redux state property inorder to directly change redux*/}
+                        <input 
+                            className="inputNewTitle" 
+                            onChange={(event) => this.handleChangeFor('title', event)} 
+                            value={this.props.movieDetails.title}>
+                        </input>
+                        <h2 className="genresLabel">Genre(s) </h2>
+                        {/* loop through genres */}
+                        <ul className="genresUl">
+                            {this.props.movieDetails.genre_array && this.props.movieDetails.genre_array.map((genre, i) => <li key={i} >{genre}</li>)}
+                        </ul>
+                        <br />
+                        <img src={this.props.movieDetails.poster} />
+                        <span className="posterDescription">
+                            <div >
+                                <h3>Description </h3>
+                                {/* set value of input as a redux state property inorder to directly change redux*/}
+                                <textarea 
+                                    className="descriptionEditInput"
+                                    onChange={(event) => this.handleChangeFor('description', event)}
+                                    value={this.props.movieDetails.description}>
+                                </textarea>
+                            </div>
+                        </span>
+                    </form>
                 </div>
             </>
         );

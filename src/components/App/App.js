@@ -11,10 +11,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-
-        <Route exact path="/" component={Home} />
+        {/* Main component */}
+        <Route exact path="/" component={Home} /> 
         <Switch>
-          <Route exact path="/details/:id" component={MovieDetails} />
+          
+          <Route exact path="/details/:id" component={MovieDetails} /> 
           <Route exact path="/details/edit/:id" component={EditDetails} />
         </Switch>
       </Router>

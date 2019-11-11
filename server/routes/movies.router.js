@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // return all movies
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { // gets all data from all movies including genres
     const queryText = `SELECT movies.id,title,poster,description,ARRAY_AGG(genres.name) as genre_array FROM movies_genres 
     JOIN movies ON movies.id=movies_genres.movie_id 
     JOIN genres ON genres.id=movies_genres.genre_id
@@ -16,11 +16,11 @@ router.get('/', (req, res) => {
             res.send(result.rows)
         })
         .catch(error => {
-            console.log("ERROR IN GET",error); 
+            console.log("ERROR IN GET", error);
         })
 });
 
-router.post('/details/:id',(req,res) => {
+router.post('/details/:id', (req, res) => { // gets all the data from a selected movie, stores genres in an array as genre_array prop
     const queryText = `SELECT movies.id,title,poster,description,ARRAY_AGG(name) as genre_array FROM movies_genres
      JOIN movies ON movies.id=movies_genres.movie_id 
      JOIN genres ON genres.id=movies_genres.genre_id
@@ -28,7 +28,7 @@ router.post('/details/:id',(req,res) => {
      GROUP BY movies.id,title,description,poster
      ;`;
     console.log(req.params.id);
-    pool.query(queryText,[req.params.id])
+    pool.query(queryText, [req.params.id])
         .then(result => {
             console.log(result.rows);
             res.send(result.rows);
@@ -39,7 +39,7 @@ router.post('/details/:id',(req,res) => {
         })
 })
 
-router.put('/edit/:id',(req,res) => {
+router.put('/edit/:id', (req, res) => { // SQL update, only can update title and description
     console.log(req.body);
     console.log(req.params.id);
     const queryText = `
@@ -47,12 +47,12 @@ router.put('/edit/:id',(req,res) => {
     SET title=$1,
     description=$2
     WHERE id=$3;`;
-    pool.query(queryText,[req.body.title,req.body.description,req.params.id])
+    pool.query(queryText, [req.body.title, req.body.description, req.params.id])
         .then(result => {
             res.send(200);
         })
         .catch(error => {
-            console.log('Error in put',error);
+            console.log('Error in put', error);
             res.sendStatus(500);
         })
 })
