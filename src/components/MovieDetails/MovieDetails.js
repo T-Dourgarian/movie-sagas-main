@@ -33,7 +33,7 @@ class MovieDetails extends Component {
                     </ul>
                     <img src={this.props.movieDetails.poster} />
                     <span className="posterDescription">
-                        <div className="descriptionDiv">
+                        <div >
                             <h3>Description </h3>
                             {this.props.movieDetails.description}
                         </div>
